@@ -2,11 +2,12 @@
   "name": "tops",
   "displayName": "TOPS",
   "description": "Text operations made simple.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "nicoknl",
   "author": {
       "name": "NicoKNL"
   },
+  "icon": "images/tops-logo.png",
   "engines": {
     "vscode": "^1.5.0"
   },
