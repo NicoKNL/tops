@@ -26,9 +26,9 @@ async function getScriptFromUser() : Promise<string> {
 export function activate(context: vscode.ExtensionContext) {
     if (root.length === 0) {
         root = `${context.extensionPath}/examples`;
-        console.log("getting path: ");
-        console.log(root);
     }
+
+    vscode.window.showInformationMessage('TOPS root set to: ' + root);
 
     let disposable = vscode.commands.registerCommand('tops.tops', async () => {
         const editor = vscode.window.activeTextEditor;
