@@ -1,0 +1,9 @@
+# IDEs
+/.vscode/
+
+# Build/deps dirs
+out
+dist
+node_modules
+/.vscode-test/
+*.vsix
