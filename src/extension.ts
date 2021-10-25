@@ -2,6 +2,7 @@ import * as vscode from 'vscode';
 import * as cp from 'child_process';
 
 let root = vscode.workspace.getConfiguration('tops').scriptsRoot;
+let pythonExecutable = vscode.workspace.getConfiguration('tops').pythonExecutablePath;
 
 async function executeCommand(cmd: string) : Promise<string> {
     return new Promise<string>((resolve, reject) => {
@@ -28,9 +29,7 @@ export function activate(context: vscode.ExtensionContext) {
         root = `${context.extensionPath}/examples`;
     }
 
-    vscode.window.showInformationMessage('TOPS root set to: ' + root);
-
-    let disposable = vscode.commands.registerCommand('tops.tops', async () => {
+    let disposable = vscode.commands.registerCommand('tops.applyOperation', async () => {
         const editor = vscode.window.activeTextEditor;
 
         if (editor) {
@@ -40,8 +39,7 @@ export function activate(context: vscode.ExtensionContext) {
             const text = document.getText(selection);
             
             const script = await getScriptFromUser();
-            const cmd: string = ['python', `${root}/${script}`, `"${text}"` ].join(' ');
-            console.log("cmd: " + cmd);
+            const cmd: string = [pythonExecutable, `"${root}/${script}"`, `"${text}"` ].join(' ');
             const result:string = await executeCommand(cmd);
 
             editor.edit(editBuilder => {

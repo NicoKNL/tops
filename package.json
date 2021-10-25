@@ -2,7 +2,7 @@
   "name": "tops",
   "displayName": "TOPS",
   "description": "Text operations made simple.",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "publisher": "nicoknl",
   "author": {
       "name": "NicoKNL"
@@ -15,7 +15,7 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:tops.tops"
+    "onCommand:tops.applyOperation"
   ],
   "main": "./out/extension.js",
   "contributes": {
@@ -25,15 +25,27 @@
         "tops.scriptsRoot": {
           "type": "string",
           "description": "The root folder in which operations are stored"
+        },
+        "tops.pythonExecutablePath": {
+          "type": "string",
+          "default": "python",
+          "description": "The path to your python executable"
         }
       }
     },
     "commands": [
       {
-        "command": "tops.tops",
-        "title": "Run TOPS"
+        "command": "tops.applyOperation",
+        "title": "Apply operation",
+        "category": "TOPS"
       }
-    ]
+    ],
+    "keybindings": {
+        "command": "tops.applyOperation",
+        "key": "ctrl+\\",
+        "mac": "cmd+\\",
+        "when": "editorTextFocus"
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
